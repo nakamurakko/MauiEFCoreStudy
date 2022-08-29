@@ -9,14 +9,41 @@
         <viewModels:MainPageViewModel />
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <VerticalStackLayout VerticalOptions="Center">
+    <ListView ItemsSource="{Binding Books}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
 
-            <Label Text="Hello, World!"
-                   FontSize="32"
-                   HorizontalOptions="Center" />
+                <ViewCell>
+                    <Grid Margin="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
 
-        </VerticalStackLayout>
-    </ScrollView>
+                        <Label Grid.Column="0"
+                               Grid.Row="0"
+                               Text="タイトル"
+                               VerticalOptions="Center" />
+                        <Label Grid.Column="1"
+                               Grid.Row="0"
+                               Text="{Binding Title}" />
+
+                        <Label Grid.Column="0"
+                               Grid.Row="1"
+                               Text="著者"
+                               VerticalOptions="Center" />
+                        <Label Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding Author.AuthorName}" />
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
 </ContentPage>
