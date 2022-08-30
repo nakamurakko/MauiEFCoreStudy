@@ -17,9 +17,4 @@ public class MainPageViewModel
     public string Title { get; set; } = "MauiEFCoreStudy";
 
     public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>(BookModel.GetBooks());
-
-    public MainPageViewModel()
-    {
-
-    }
 }
