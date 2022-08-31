@@ -6,8 +6,14 @@
        xmlns:views="clr-namespace:MauiEFCoreStudy.Views"
        Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate views:MainPage}"
-                  Route="Views/MainPage" />
+    <TabBar>
+        <ShellContent Title="Home"
+                      ContentTemplate="{DataTemplate views:MainPage}"
+                      Route="Views/MainPage" />
+
+        <ShellContent Title="本を追加"
+                      ContentTemplate="{DataTemplate views:BookPage}"
+                      Route="Views/BookPage" />
+    </TabBar>
 
 </Shell>

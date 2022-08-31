@@ -42,4 +42,16 @@ public class BookModel
 
         return books;
     }
+
+    /// <summary>
+    /// 本を追加する。
+    /// </summary>
+    /// <param name="book"></param>
+    public static void SaveBook(Book book)
+    {
+        using (var dbContext = new BookDBContext())
+        {
+            dbContext.Books.Add(book);
+        }
+    }
 }
