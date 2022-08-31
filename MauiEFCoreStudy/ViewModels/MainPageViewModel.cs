@@ -1,4 +1,5 @@
-﻿using MauiEFCoreStudy.DataTypes;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace MauiEFCoreStudy.ViewModels;
 /// <summary>
 /// MainPage用ViewModel。
 /// </summary>
-public class MainPageViewModel
+public partial class MainPageViewModel : ObservableObject
 {
-    public string Title { get; set; } = "MauiEFCoreStudy";
+    [ObservableProperty]
+    private string _title = "MauiEFCoreStudy";
 
-    public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>(BookModel.GetBooks());
+    [ObservableProperty]
+    private ObservableCollection<Book> _books = new ObservableCollection<Book>(BookModel.GetBooks());
 }

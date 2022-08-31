@@ -1,4 +1,5 @@
-﻿using MauiEFCoreStudy.DataTypes;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MauiEFCoreStudy.DataTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace MauiEFCoreStudy.ViewModels;
 
-public class BookPageViewModel
+public partial class BookPageViewModel : ObservableObject
 {
-    public string Title { get; set; } = "本追加";
+    [ObservableProperty]
+    private string _title = "本追加";
 
-    public Book Book { get; set; } = new Book();
+    [ObservableProperty]
+    private Book _book = new Book();
 }
