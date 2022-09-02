@@ -16,7 +16,7 @@ public class BookModel
     /// <summary>
     /// 本情報を取得する。
     /// </summary>
-    /// <returns></returns>
+    /// <returns>本情報の一覧。</returns>
     public static IEnumerable<Book> GetBooks()
     {
         var books = new List<Book>();
@@ -46,12 +46,14 @@ public class BookModel
     /// <summary>
     /// 本を追加する。
     /// </summary>
-    /// <param name="book"></param>
-    public static void SaveBook(Book book)
+    /// <param name="book">本情報。</param>
+    public static void AddBook(Book book)
     {
         using (var dbContext = new BookDBContext())
         {
             dbContext.Books.Add(book);
+
+            dbContext.SaveChanges();
         }
     }
 }

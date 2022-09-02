@@ -3,16 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MauiEFCoreStudy.ViewModels"
              x:Class="MauiEFCoreStudy.Views.BookPage"
-             Title="BookPage">
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <viewModels:BookPageViewModel />
     </ContentPage.BindingContext>
 
     <VerticalStackLayout>
-        <Label Text="Welcome to .NET MAUI!"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
+        <StackLayout>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Text="タイトル"
+                       VerticalOptions="CenterAndExpand" />
+                <Entry Grid.Column="1"
+                       Grid.Row="0"
+                       Text="{Binding Book.Title}" />
+            </Grid>
+
+            <Button Command="{Binding AddBookCommand}"
+                    HorizontalOptions="Center"
+                    Text="追加" />
+
+        </StackLayout>
     </VerticalStackLayout>
 
 </ContentPage>

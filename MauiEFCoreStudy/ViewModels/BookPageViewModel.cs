@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MauiEFCoreStudy.DataTypes;
+using MauiEFCoreStudy.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace MauiEFCoreStudy.ViewModels;
 
+/// <summary>
+/// BookPage用ViewModel。
+/// </summary>
 public partial class BookPageViewModel : ObservableObject
 {
     [ObservableProperty]
@@ -15,4 +19,22 @@ public partial class BookPageViewModel : ObservableObject
 
     [ObservableProperty]
     private Book _book = new Book();
+
+    /// <summary>
+    /// 本を追加するCommand。
+    /// </summary>
+    public Command AddBookCommand { get; set; }
+
+    /// <summary>
+    /// コンストラクター。
+    /// </summary>
+    public BookPageViewModel()
+    {
+        AddBookCommand = new Command(() => AddBookCommandExecute());
+    }
+
+    private void AddBookCommandExecute()
+    {
+        BookModel.AddBook(_book);
+    }
 }
