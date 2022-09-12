@@ -1,5 +1,6 @@
 ﻿using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.DB;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,18 +25,22 @@ public class BookModel
         using (var dbContext = new BookDBContext())
         {
             books = dbContext.Books
-                .Join(
+                .GroupJoin(
                     dbContext.Authors,
                     book => book.AuthorId,
                     author => author.AuthorId,
-                    (book, author) =>
-                        new Book
-                        {
-                            BookId = book.BookId,
-                            Title = book.Title,
-                            AuthorId = book.AuthorId,
-                            Author = book.Author
-                        }
+                    (book, authors) => new { book, authors }
+                )
+                .SelectMany(
+                    bookAndAuthors => bookAndAuthors.authors.DefaultIfEmpty(),
+                    (bookAndAuthors, author) =>
+                    new Book()
+                    {
+                        BookId = bookAndAuthors.book.BookId,
+                        Title = bookAndAuthors.book.Title,
+                        AuthorId = bookAndAuthors.book.AuthorId,
+                        Author = author
+                    }
                 )
                 .ToList();
         }
