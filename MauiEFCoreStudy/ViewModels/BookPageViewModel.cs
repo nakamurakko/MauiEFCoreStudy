@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
 using System;
@@ -12,6 +13,7 @@ namespace MauiEFCoreStudy.ViewModels;
 /// <summary>
 /// BookPage用ViewModel。
 /// </summary>
+[QueryProperty(nameof(Book), nameof(Book))]
 public partial class BookPageViewModel : ObservableObject
 {
     [ObservableProperty]

@@ -9,11 +9,11 @@
     <TabBar>
         <ShellContent Title="Home"
                       ContentTemplate="{DataTemplate views:MainPage}"
-                      Route="Views/MainPage" />
+                      Route="Main" />
 
         <ShellContent Title="本を追加"
                       ContentTemplate="{DataTemplate views:BookPage}"
-                      Route="Views/BookPage" />
+                      Route="Book" />
     </TabBar>
 
 </Shell>

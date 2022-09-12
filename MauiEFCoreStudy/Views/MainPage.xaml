@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dataTypes="clr-namespace:MauiEFCoreStudy.DataTypes"
              xmlns:viewModels="clr-namespace:MauiEFCoreStudy.ViewModels"
              x:Class="MauiEFCoreStudy.Views.MainPage"
              Title="{Binding Title}">
@@ -9,11 +10,59 @@
         <viewModels:MainPageViewModel />
     </ContentPage.BindingContext>
 
-    <ListView ItemsSource="{Binding Books}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
+    <StackLayout>
 
-                <ViewCell>
+        <ListView ItemsSource="{Binding Books}"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout BindingContext="{Binding Source={RelativeSource AncestorType={x:Type dataTypes:Book}}}"
+                                     Orientation="Horizontal">
+                            <Grid Margin="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Column="0"
+                                       Grid.Row="0"
+                                       Text="タイトル"
+                                       VerticalOptions="Center" />
+                                <Label Grid.Column="1"
+                                       Grid.Row="0"
+                                       Text="{Binding Title}" />
+
+                                <Label Grid.Column="0"
+                                       Grid.Row="1"
+                                       Text="著者"
+                                       VerticalOptions="Center" />
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       Text="{Binding Author.AuthorName}" />
+
+                            </Grid>
+
+                            <Button Command="{Binding SelectBookCommand, Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}}"
+                                    CommandParameter="{Binding}"
+                                    Text="編集" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <CollectionView ItemsSource="{Binding Books}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SelectBookCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
                     <Grid Margin="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
@@ -41,9 +90,11 @@
                                Text="{Binding Author.AuthorName}" />
 
                     </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
 
 </ContentPage>
