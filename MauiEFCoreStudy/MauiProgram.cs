@@ -1,4 +1,5 @@
-﻿using MauiEFCoreStudy.DB;
+﻿using MauiEFCoreStudy.Constants;
+using MauiEFCoreStudy.DB;
 using MauiEFCoreStudy.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,8 +15,8 @@ public static class MauiProgram
             .UseMauiApp<App>();
 
         // https://docs.microsoft.com/ja-jp/dotnet/maui/fundamentals/shell/navigation
-        Routing.RegisterRoute("Main", typeof(MainPage));
-        Routing.RegisterRoute("Book", typeof(BookPage));
+        Routing.RegisterRoute(RoutingPath.Main, typeof(MainPage));
+        Routing.RegisterRoute(RoutingPath.Book, typeof(BookPage));
 
         return builder.Build();
     }
