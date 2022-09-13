@@ -32,6 +32,6 @@ public partial class MainPageViewModel : ObservableObject
 
     private async Task SelectBookCommandExecuteAsync(Book book)
     {
-        await Shell.Current.GoToAsync(RoutingPath.Book, new Dictionary<string, object>() { { nameof(Book), book } });
+        await Shell.Current.GoToAsync(RoutingPath.Book, new Dictionary<string, object>() { { nameof(Book), book }, { nameof(DisplayMode), DisplayMode.ReadOnly } });
     }
 }

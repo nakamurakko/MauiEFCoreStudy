@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MauiEFCoreStudy.Constants;
 using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
 using System;
@@ -14,13 +15,29 @@ namespace MauiEFCoreStudy.ViewModels;
 /// BookPage用ViewModel。
 /// </summary>
 [QueryProperty(nameof(Book), nameof(Book))]
+[QueryProperty(nameof(DisplayMode), nameof(DisplayMode))]
 public partial class BookPageViewModel : ObservableObject
 {
     [ObservableProperty]
-    private string _title = "本追加";
+    private string _title = "本情報";
 
     [ObservableProperty]
     private Book _book = new Book();
+
+    [ObservableProperty]
+    private DisplayMode _displayMode = DisplayMode.Add;
+
+    // ObservableProperty が反応しない場合は、プロパティを定義する。
+    //[ObservableProperty]
+    //private bool _isReadonly = false;
+    private bool isReadonly;
+
+    public bool IsReadonly
+    {
+        get => isReadonly;
+        set => SetProperty(ref isReadonly, value);
+    }
+
 
     [ObservableProperty]
     private ObservableCollection<Author> _authors;
@@ -78,5 +95,26 @@ public partial class BookPageViewModel : ObservableObject
     {
         _book.AuthorId = value.AuthorId;
         _book.Author = value;
+    }
+
+    partial void OnDisplayModeChanged(DisplayMode value)
+    {
+        switch (value) {
+            case DisplayMode.Add:
+                _title = "本を追加";
+                IsReadonly = false;
+
+                break;
+            case DisplayMode.Edit:
+                _title = "本を編集";
+                IsReadonly = false;
+
+                break;
+            case DisplayMode.ReadOnly:
+                _title = "本情報";
+                IsReadonly = true;
+
+                break;
+        }
     }
 }

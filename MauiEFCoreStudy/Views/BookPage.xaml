@@ -9,44 +9,73 @@
         <viewModels:BookPageViewModel />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout>
-        <StackLayout>
+    <StackLayout>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-                <Label Grid.Column="0"
-                       Grid.Row="0"
-                       Text="タイトル"
-                       VerticalOptions="CenterAndExpand" />
-                <Entry Grid.Column="1"
-                       Grid.Row="0"
-                       Text="{Binding Book.Title}" />
+            <Label Grid.Column="0"
+                   Grid.Row="0"
+                   Text="タイトル"
+                   VerticalOptions="CenterAndExpand" />
+            <Entry Grid.Column="1"
+                   Grid.Row="0"
+                   IsReadOnly="{Binding IsReadonly}"
+                   Text="{Binding Book.Title}" />
 
-                <Label Grid.Column="0"
-                       Grid.Row="1"
-                       Text="著者"
-                       VerticalOptions="CenterAndExpand" />
-                <Picker Grid.Column="1"
-                        Grid.Row="1"
-                        ItemDisplayBinding="{Binding AuthorName}"
-                        ItemsSource="{Binding Authors}"
-                        SelectedItem="{Binding SelectedAuthor}" />
+            <Label Grid.Column="0"
+                   Grid.Row="1"
+                   Text="著者"
+                   VerticalOptions="CenterAndExpand" />
+            <Label Grid.Column="1"
+                   Grid.Row="1"
+                   IsVisible="{Binding IsReadonly}"
+                   Text="{Binding Book.Author.AuthorName}" />
+            <Picker Grid.Column="1"
+                    Grid.Row="1"
+                    ItemDisplayBinding="{Binding AuthorName}"
+                    ItemsSource="{Binding Authors}"
+                    SelectedItem="{Binding SelectedAuthor}">
+                <Picker.Style>
+                    <Style TargetType="Picker">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsReadonly}"
+                                         TargetType="Picker"
+                                         Value="true">
+                                <Setter Property="IsVisible"
+                                        Value="false" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Picker.Style>
+            </Picker>
 
-            </Grid>
+        </Grid>
 
-            <Button Command="{Binding AddBookCommand}"
-                    HorizontalOptions="Center"
-                    Text="追加" />
+        <Button Command="{Binding AddBookCommand}"
+                HorizontalOptions="Center"
+                Text="追加">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsReadonly}"
+                                     TargetType="Button"
+                                     Value="true">
+                            <Setter Property="IsVisible"
+                                    Value="false" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
-        </StackLayout>
-    </VerticalStackLayout>
+    </StackLayout>
 
 </ContentPage>
