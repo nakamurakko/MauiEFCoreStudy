@@ -29,6 +29,17 @@
                 <Entry Grid.Column="1"
                        Grid.Row="0"
                        Text="{Binding Book.Title}" />
+
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Text="著者"
+                       VerticalOptions="CenterAndExpand" />
+                <Picker Grid.Column="1"
+                        Grid.Row="1"
+                        ItemDisplayBinding="{Binding AuthorName}"
+                        ItemsSource="{Binding Authors}"
+                        SelectedItem="{Binding SelectedAuthor}" />
+
             </Grid>
 
             <Button Command="{Binding AddBookCommand}"

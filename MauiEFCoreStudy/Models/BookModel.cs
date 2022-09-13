@@ -3,6 +3,7 @@ using MauiEFCoreStudy.DB;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,22 @@ namespace MauiEFCoreStudy.Models;
 /// </summary>
 public class BookModel
 {
+    /// <summary>
+    /// 著者の一覧を取得する。
+    /// </summary>
+    /// <returns>著者の一覧。</returns>
+    public static IEnumerable<Author> GetAuthors()
+    {
+        var authors = new List<Author>();
+
+        using (var dbContext = new BookDBContext())
+        {
+            authors = dbContext.Authors.ToList();
+        }
+
+        return authors;
+    }
+
     /// <summary>
     /// 本情報を取得する。
     /// </summary>
@@ -56,7 +73,12 @@ public class BookModel
     {
         using (var dbContext = new BookDBContext())
         {
-            dbContext.Books.Add(book);
+            dbContext.Books.Add(
+                new Book()
+                {
+                    Title = book.Title,
+                    AuthorId = book.AuthorId
+                });
 
             dbContext.SaveChanges();
         }
