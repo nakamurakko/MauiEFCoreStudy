@@ -17,7 +17,7 @@ public class Author
     /// <summary>
     /// 著者ID。
     /// </summary>
-    public Int64 AuthorId { get; set; }
+    public long AuthorId { get; set; }
 
     /// <summary>
     /// 著者名。
