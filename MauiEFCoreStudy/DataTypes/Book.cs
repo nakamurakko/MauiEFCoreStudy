@@ -17,7 +17,7 @@ public class Book
     /// <summary>
     /// 本ID。
     /// </summary>
-    public Int64 BookId { get; set; }
+    public long BookId { get; set; }
 
     /// <summary>
     /// タイトル。
@@ -29,7 +29,7 @@ public class Book
     /// <summary>
     /// 著者ID。
     /// </summary>
-    public Int64? AuthorId { get; set; }
+    public long? AuthorId { get; set; }
 
     /// <summary>
     /// 著者。
