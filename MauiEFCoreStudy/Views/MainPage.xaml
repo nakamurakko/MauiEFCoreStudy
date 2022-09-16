@@ -56,7 +56,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <CollectionView ItemsSource="{Binding Books}"
+        <!--<CollectionView ItemsSource="{Binding Books}"
                         SelectionMode="Single"
                         SelectionChangedCommand="{Binding SelectBookCommand}"
                         SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
@@ -93,7 +93,7 @@
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
+        </CollectionView>-->
 
     </StackLayout>
 
