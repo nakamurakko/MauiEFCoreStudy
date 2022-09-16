@@ -73,12 +73,7 @@ public class BookModel
     {
         using (var dbContext = new BookDBContext())
         {
-            dbContext.Books.Add(
-                new Book()
-                {
-                    Title = book.Title,
-                    AuthorId = book.AuthorId
-                });
+            dbContext.Books.Add(book);
 
             dbContext.SaveChanges();
         }

@@ -34,6 +34,10 @@ public class Book
     /// <summary>
     /// 著者。
     /// </summary>
+    /// <remarks>
+    /// https://docs.microsoft.com/ja-jp/ef/core/modeling/entity-properties?tabs=data-annotations%2Cwithout-nrt#included-and-excluded-properties
+    /// </remarks>
     [ForeignKey(nameof(AuthorId))]
+    [NotMapped]
     public Author Author { get; set; }
 }
