@@ -95,6 +95,10 @@ public partial class BookPageViewModel : ObservableObject
         _book.Author = value;
     }
 
+    /// <summary>
+    /// _displayMode 変更時処理。
+    /// </summary>
+    /// <param name="value"><see cref="DisplayMode"/></param>
     partial void OnDisplayModeChanged(DisplayMode value)
     {
         switch (value) {
