@@ -23,15 +23,13 @@ public partial class MainPageViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<Book> _books = new ObservableCollection<Book>(BookModel.GetBooks());
 
-    public IRelayCommand<Book> SelectBookCommand { get; set; }
-
-    public MainPageViewModel()
+    /// <summary>
+    /// 本の詳細を表示する。
+    /// </summary>
+    /// <param name="book">本情報。</param>
+    [RelayCommand]
+    private void ShowBookDetail(Book book)
     {
-        SelectBookCommand = new RelayCommand<Book>(async book => await SelectBookCommandExecuteAsync(book));
-    }
-
-    private async Task SelectBookCommandExecuteAsync(Book book)
-    {
-        await Shell.Current.GoToAsync(RoutingPath.Book, new Dictionary<string, object>() { { nameof(Book), book }, { nameof(DisplayMode), DisplayMode.ReadOnly } });
+        Shell.Current.GoToAsync(RoutingPath.Book, new Dictionary<string, object>() { { nameof(Book), book }, { nameof(DisplayMode), DisplayMode.ReadOnly } });
     }
 }

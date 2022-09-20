@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MauiEFCoreStudy.Constants;
 using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
@@ -46,21 +47,18 @@ public partial class BookPageViewModel : ObservableObject
     private Author _selectedAuthor;
 
     /// <summary>
-    /// 本を追加するCommand。
-    /// </summary>
-    public Command AddBookCommand { get; set; }
-
-    /// <summary>
     /// コンストラクター。
     /// </summary>
     public BookPageViewModel()
     {
-        AddBookCommand = new Command(() => AddBookCommandExecute());
-
         _authors = new ObservableCollection<Author>(BookModel.GetAuthors());
     }
 
-    private void AddBookCommandExecute()
+    /// <summary>
+    /// 本を追加する。
+    /// </summary>
+    [RelayCommand]
+    private void AddBook()
     {
         BookModel.AddBook(_book);
     }
