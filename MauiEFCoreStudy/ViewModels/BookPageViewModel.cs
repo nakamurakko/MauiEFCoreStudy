@@ -28,17 +28,8 @@ public partial class BookPageViewModel : ObservableObject
     [ObservableProperty]
     private DisplayMode _displayMode = DisplayMode.Add;
 
-    // ObservableProperty が反応しない場合は、プロパティを定義する。
-    //[ObservableProperty]
-    //private bool _isReadonly = false;
-    private bool isReadonly;
-
-    public bool IsReadonly
-    {
-        get => isReadonly;
-        set => SetProperty(ref isReadonly, value);
-    }
-
+    [ObservableProperty]
+    private bool _isReadonly = false;
 
     [ObservableProperty]
     private ObservableCollection<Author> _authors;
@@ -101,7 +92,8 @@ public partial class BookPageViewModel : ObservableObject
     /// <param name="value"><see cref="DisplayMode"/></param>
     partial void OnDisplayModeChanged(DisplayMode value)
     {
-        switch (value) {
+        switch (value)
+        {
             case DisplayMode.Add:
                 _title = "本を追加";
                 IsReadonly = false;
