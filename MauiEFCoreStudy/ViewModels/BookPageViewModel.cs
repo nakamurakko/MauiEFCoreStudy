@@ -51,7 +51,10 @@ public partial class BookPageViewModel : ObservableObject
     [RelayCommand]
     private void AddBook()
     {
-        BookModel.AddBook(_book);
+        BookModel.AddBook(Book);
+
+        Book = new Book();
+        SelectedAuthor = null;
     }
 
     /// <summary>
@@ -82,6 +85,14 @@ public partial class BookPageViewModel : ObservableObject
     /// <param name="value">著者情報。</param>
     partial void OnSelectedAuthorChanged(Author value)
     {
+        if (value == null)
+        {
+            _book.AuthorId = null;
+            _book.Author = null;
+
+            return;
+        }
+
         _book.AuthorId = value.AuthorId;
         _book.Author = value;
     }
