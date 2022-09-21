@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dataTypes="clr-namespace:MauiEFCoreStudy.DataTypes"
+             xmlns:viewModels="clr-namespace:MauiEFCoreStudy.ViewModels"
+             x:Class="MauiEFCoreStudy.Views.AuthorPage"
+             Title="AuthorPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:AuthorPageViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0"
+                   Grid.Row="0"
+                   Text="著者名" />
+            <Entry Grid.Column="1"
+                   Grid.Row="0"
+                   Text="{Binding Author.AuthorName}" />
+        </Grid>
+
+        <Button Command="{Binding AddAuthorCommand}"
+                Text="追加" />
+    </VerticalStackLayout>
+
+</ContentPage>

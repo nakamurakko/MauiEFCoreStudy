@@ -3,17 +3,22 @@
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:MauiEFCoreStudy"
+       xmlns:constants="clr-namespace:MauiEFCoreStudy.Constants"
        xmlns:views="clr-namespace:MauiEFCoreStudy.Views"
        Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
         <ShellContent Title="Home"
                       ContentTemplate="{DataTemplate views:MainPage}"
-                      Route="Main" />
+                      Route="{x:Static constants:RoutingPath.Main}" />
 
         <ShellContent Title="本を追加"
                       ContentTemplate="{DataTemplate views:BookPage}"
-                      Route="Book" />
+                      Route="{x:Static constants:RoutingPath.Book}" />
+
+        <ShellContent Title="著者を追加"
+                      ContentTemplate="{DataTemplate views:AuthorPage}"
+                      Route="{x:Static constants:RoutingPath.Author}" />
     </TabBar>
 
 </Shell>
