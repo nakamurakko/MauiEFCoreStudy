@@ -58,7 +58,7 @@ public partial class BookPageViewModel : ObservableObject
     }
 
     /// <summary>
-    /// _book 変更時処理。
+    /// Book 変更時処理。
     /// </summary>
     /// <param name="value">本情報。</param>
     /// <remarks>
@@ -80,7 +80,7 @@ public partial class BookPageViewModel : ObservableObject
     }
 
     /// <summary>
-    /// _selectedAuthor 変更時処理。
+    /// SelectedAuthor 変更時処理。
     /// </summary>
     /// <param name="value">著者情報。</param>
     partial void OnSelectedAuthorChanged(Author value)
@@ -98,7 +98,7 @@ public partial class BookPageViewModel : ObservableObject
     }
 
     /// <summary>
-    /// _displayMode 変更時処理。
+    /// DisplayMode 変更時処理。
     /// </summary>
     /// <param name="value"><see cref="DisplayMode"/></param>
     partial void OnDisplayModeChanged(DisplayMode value)
