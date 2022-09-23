@@ -11,6 +11,22 @@
     </ContentPage.BindingContext>
 
     <StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Entry Grid.Column="0"
+                   Text="{Binding SearchTitle}" />
+            <Button Grid.Column="1"
+                    Command="{Binding SearchBooksCommand}"
+                    Text="検索" />
+            <Button Grid.Column="2"
+                    Command="{Binding ClearSearchResultCommand}"
+                    Text="検索結果をクリア" />
+        </Grid>
 
         <ListView ItemsSource="{Binding Books}"
                   SelectionMode="None">
