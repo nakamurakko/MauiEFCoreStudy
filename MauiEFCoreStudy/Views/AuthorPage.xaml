@@ -29,6 +29,7 @@
         </Grid>
 
         <Button Command="{Binding AddAuthorCommand}"
+                HorizontalOptions="Center"
                 Text="追加" />
     </VerticalStackLayout>
 
