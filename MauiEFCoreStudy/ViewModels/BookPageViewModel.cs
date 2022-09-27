@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MauiEFCoreStudy.Constants;
 using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
+using MauiEFCoreStudy.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +18,7 @@ namespace MauiEFCoreStudy.ViewModels;
 /// </summary>
 [QueryProperty(nameof(Book), nameof(Book))]
 [QueryProperty(nameof(DisplayMode), nameof(DisplayMode))]
-public partial class BookPageViewModel : ObservableObject
+public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
 {
     [ObservableProperty]
     private string _title = "本情報";
@@ -32,17 +33,32 @@ public partial class BookPageViewModel : ObservableObject
     private bool _isReadonly = false;
 
     [ObservableProperty]
-    private ObservableCollection<Author> _authors;
+    private ObservableCollection<Author> _authors = new ObservableCollection<Author>();
 
     [ObservableProperty]
     private Author _selectedAuthor;
+
+    public Task Initialization { get; private set; }
 
     /// <summary>
     /// コンストラクター。
     /// </summary>
     public BookPageViewModel()
     {
-        _authors = new ObservableCollection<Author>(BookModel.GetAuthors());
+        Initialization = InitializeAsync();
+    }
+
+    /// <summary>
+    /// 非同期で初期化する。
+    /// </summary>
+    /// <returns><see cref="Task"/></returns>
+    private async Task InitializeAsync()
+    {
+        var authors = await BookModel.GetAuthorsAsync();
+        foreach (var author in authors)
+        {
+            Authors.Add(author);
+        }
     }
 
     /// <summary>

@@ -19,13 +19,13 @@ public class BookModel
     /// 著者の一覧を取得する。
     /// </summary>
     /// <returns>著者の一覧。</returns>
-    public static IEnumerable<Author> GetAuthors()
+    public static async Task<IEnumerable<Author>> GetAuthorsAsync()
     {
         var authors = new List<Author>();
 
         using (var dbContext = new BookDBContext())
         {
-            authors = dbContext.Authors.ToList();
+            authors = await dbContext.Authors.ToListAsync();
         }
 
         return authors;
@@ -35,13 +35,13 @@ public class BookModel
     /// 本情報を取得する。
     /// </summary>
     /// <returns>本情報の一覧。</returns>
-    public static IEnumerable<Book> GetBooks()
+    public static async Task<IEnumerable<Book>> GetBooksAsync()
     {
         var books = new List<Book>();
 
         using (var dbContext = new BookDBContext())
         {
-            books = dbContext.Books
+            books = await dbContext.Books
                 .GroupJoin(
                     dbContext.Authors,
                     book => book.AuthorId,
@@ -59,7 +59,7 @@ public class BookModel
                         Author = author
                     }
                 )
-                .ToList();
+                .ToListAsync();
         }
 
         return books;
@@ -70,13 +70,13 @@ public class BookModel
     /// </summary>
     /// <param name="title">本のタイトル。部分一致検索する。</param>
     /// <returns>本情報の一覧。</returns>
-    public static IEnumerable<Book> GetBooks(string title)
+    public static async Task<IEnumerable<Book>> GetBooksAsync(string title)
     {
         var books = new List<Book>();
 
         using (var dbContext = new BookDBContext())
         {
-            books = dbContext.Books
+            books = await dbContext.Books
                 .GroupJoin(
                     dbContext.Authors,
                     book => book.AuthorId,
@@ -95,7 +95,7 @@ public class BookModel
                     }
                 )
                 .Where(book => book.Title.Contains(title))
-                .ToList();
+                .ToListAsync();
         }
 
         return books;
