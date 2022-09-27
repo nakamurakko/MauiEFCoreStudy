@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace MauiEFCoreStudy.ViewModels;
 
 /// <summary>
-/// BookPage用ViewModel。
+/// BookPage 用 ViewModel。
 /// </summary>
 [QueryProperty(nameof(Book), nameof(Book))]
 [QueryProperty(nameof(DisplayMode), nameof(DisplayMode))]

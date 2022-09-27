@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace MauiEFCoreStudy.ViewModels;
 
 /// <summary>
-/// MainPage用ViewModel。
+/// MainPage 用 ViewModel。
 /// </summary>
 public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
 {
