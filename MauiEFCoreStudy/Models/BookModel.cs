@@ -46,16 +46,16 @@ public class BookModel
                     dbContext.Authors,
                     book => book.AuthorId,
                     author => author.AuthorId,
-                    (book, authors) => new { book, authors }
+                    (book, author) => new { book, author }
                 )
                 .SelectMany(
-                    bookAndAuthors => bookAndAuthors.authors.DefaultIfEmpty(),
-                    (bookAndAuthors, author) =>
+                    bookAndAuthor => bookAndAuthor.author.DefaultIfEmpty(),
+                    (bookAndAuthor, author) =>
                     new Book()
                     {
-                        BookId = bookAndAuthors.book.BookId,
-                        Title = bookAndAuthors.book.Title,
-                        AuthorId = bookAndAuthors.book.AuthorId,
+                        BookId = bookAndAuthor.book.BookId,
+                        Title = bookAndAuthor.book.Title,
+                        AuthorId = bookAndAuthor.book.AuthorId,
                         Author = author
                     }
                 )
@@ -81,16 +81,16 @@ public class BookModel
                     dbContext.Authors,
                     book => book.AuthorId,
                     author => author.AuthorId,
-                    (book, authors) => new { book, authors }
+                    (book, author) => new { book, author }
                 )
                 .SelectMany(
-                    bookAndAuthors => bookAndAuthors.authors.DefaultIfEmpty(),
-                    (bookAndAuthors, author) =>
+                    bookAndAuthor => bookAndAuthor.author.DefaultIfEmpty(),
+                    (bookAndAuthor, author) =>
                     new Book()
                     {
-                        BookId = bookAndAuthors.book.BookId,
-                        Title = bookAndAuthors.book.Title,
-                        AuthorId = bookAndAuthors.book.AuthorId,
+                        BookId = bookAndAuthor.book.BookId,
+                        Title = bookAndAuthor.book.Title,
+                        AuthorId = bookAndAuthor.book.AuthorId,
                         Author = author
                     }
                 )
