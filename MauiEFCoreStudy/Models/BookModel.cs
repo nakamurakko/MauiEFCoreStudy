@@ -101,7 +101,6 @@ public class BookModel
         return books;
     }
 
-
     /// <summary>
     /// 著者を追加する。
     /// </summary>
