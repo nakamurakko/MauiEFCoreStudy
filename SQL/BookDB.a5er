@@ -1,0 +1,94 @@
+﻿# A5:ER FORMAT:16
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright © 2007 m.matsubara
+# A5:SQL Mk-2 Version 2.17.4 Copyright © 1997 - 2022 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=BookDB
+Author=nakamurakko
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",4,"A4Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=4
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Yu Gothic UI
+FontSize=12
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSType=4
+RDBMSTypeName=Microsoft SQL Server 2008
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=0
+ShowTag=1
+ShowCommonAttributes=0
+BugFixEntityWidth=1
+
+[Entity]
+PName=Author
+LName=Author
+Comment=
+TableOption=
+Page=Main
+Left=900
+Top=200
+Field="AuthorId","AuthorId","bigint identity","NOT NULL",0,"","",$FFFFFFFF,""
+Field="AuthorName","AuthorName","nvarchar(100)","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",900,200
+ZOrder=1
+
+[Entity]
+PName=Book
+LName=Book
+Comment=
+TableOption=
+Page=Main
+Left=200
+Top=200
+Field="BookId","BookId","bigint identity","NOT NULL",0,"","",$FFFFFFFF,""
+Field="Title","Title","nvarchar(100)","NOT NULL",,"","",$FFFFFFFF,""
+Field="AuthorId","AuthorId","bigint",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",200,200
+ZOrder=2
+
+[Relation]
+Entity1=Author
+Entity2=Book
+RelationType1=1
+RelationType2=3
+Fields1=AuthorId
+Fields2=AuthorId
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,602,9398,401,L,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=60
+Bar2=940
+Bar3=40
+TermPos1=L
+TermPos2=R
+ZOrder=3
