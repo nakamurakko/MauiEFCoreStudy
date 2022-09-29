@@ -4,7 +4,7 @@
              xmlns:dataTypes="clr-namespace:MauiEFCoreStudy.DataTypes"
              xmlns:viewModels="clr-namespace:MauiEFCoreStudy.ViewModels"
              x:Class="MauiEFCoreStudy.Views.AuthorPage"
-             Title="AuthorPage">
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <viewModels:AuthorPageViewModel />

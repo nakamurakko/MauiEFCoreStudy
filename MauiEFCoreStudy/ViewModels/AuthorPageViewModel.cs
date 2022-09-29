@@ -16,6 +16,9 @@ namespace MauiEFCoreStudy.ViewModels;
 public partial class AuthorPageViewModel : ObservableObject
 {
     [ObservableProperty]
+    private string _title = "著者を追加";
+
+    [ObservableProperty]
     private Author _author = new Author();
 
     [RelayCommand]
