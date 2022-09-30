@@ -42,7 +42,8 @@
                     Grid.Row="1"
                     ItemDisplayBinding="{Binding AuthorName}"
                     ItemsSource="{Binding Authors}"
-                    SelectedItem="{Binding SelectedAuthor}">
+                    SelectedItem="{Binding SelectedAuthor}"
+                    HorizontalOptions="FillAndExpand">
                 <Picker.Style>
                     <Style TargetType="Picker">
                         <Style.Triggers>

@@ -22,7 +22,8 @@
 
             <Label Grid.Column="0"
                    Grid.Row="0"
-                   Text="著者名" />
+                   Text="著者名"
+                   VerticalOptions="Center" />
             <Entry Grid.Column="1"
                    Grid.Row="0"
                    Text="{Binding Author.AuthorName}" />

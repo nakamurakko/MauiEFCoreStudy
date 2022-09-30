@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="Button">
+        <Setter Property="CornerRadius"
+                Value="10" />
+        <Setter Property="Margin"
+                Value="1" />
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="Margin"
+                Value="1" />
+    </Style>
+
+    <Style TargetType="Frame">
+        <Setter Property="BackgroundColor"
+                Value="Transparent" />
+        <Setter Property="BorderColor"
+                Value="Gray" />
+        <Setter Property="CornerRadius"
+                Value="10" />
+        <Setter Property="Margin"
+                Value="1" />
+        <Setter Property="Padding"
+                Value="1" />
+    </Style>
+
+    <Style TargetType="Grid">
+        <Setter Property="ColumnSpacing"
+                Value="1" />
+        <Setter Property="RowSpacing"
+                Value="1" />
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="Margin"
+                Value="1" />
+    </Style>
+
+    <Style TargetType="Line">
+        <Setter Property="BackgroundColor"
+                Value="Gray" />
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="Margin"
+                Value="1" />
+    </Style>
+
+</ResourceDictionary>
