@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MauiEFCoreStudy.Constants;
 using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
+using MauiEFCoreStudy.Services.Interfaces;
 using MauiEFCoreStudy.ViewModels.Common;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,11 @@ namespace MauiEFCoreStudy.ViewModels;
 [QueryProperty(nameof(DisplayMode), nameof(DisplayMode))]
 public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
 {
+    /// <summary>
+    /// <see cref="IDialogService"/>
+    /// </summary>
+    private IDialogService _dialogService;
+
     [ObservableProperty]
     private string _title = "本情報";
 
@@ -43,8 +49,12 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     /// <summary>
     /// コンストラクター。
     /// </summary>
-    public BookPageViewModel()
+    /// <param name="dialogService"><see cref="IDialogService"/></param>
+    public BookPageViewModel(IDialogService dialogService)
     {
+        // https://learn.microsoft.com/ja-jp/dotnet/architecture/maui/dependency-injection
+        _dialogService = dialogService;
+        
         Initialization = InitializeAsync();
     }
 
@@ -58,6 +68,11 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
         foreach (var author in authors)
         {
             Authors.Add(author);
+        }
+
+        if (!string.IsNullOrEmpty(Book.Title))
+        {
+            await _dialogService.DisplayAlert("", Book.Title, "OK", "Cancel");
         }
     }
 

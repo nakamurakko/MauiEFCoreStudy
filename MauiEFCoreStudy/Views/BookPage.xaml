@@ -5,9 +5,10 @@
              x:Class="MauiEFCoreStudy.Views.BookPage"
              Title="{Binding Title}">
 
-    <ContentPage.BindingContext>
+    <!-- https://learn.microsoft.com/ja-jp/dotnet/architecture/maui/dependency-injection -->
+    <!--<ContentPage.BindingContext>
         <viewModels:BookPageViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <StackLayout>
 
