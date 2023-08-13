@@ -1,15 +1,10 @@
 ﻿using MauiEFCoreStudy.DataTypes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiEFCoreStudy.DB;
 
-public class BookDBContext : DbContext
+public sealed class BookDBContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

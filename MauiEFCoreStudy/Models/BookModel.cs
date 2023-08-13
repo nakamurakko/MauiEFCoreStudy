@@ -1,19 +1,13 @@
 ﻿using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.DB;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiEFCoreStudy.Models;
 
 /// <summary>
 /// 本DBアクセス用 Model。
 /// </summary>
-public class BookModel
+public sealed class BookModel
 {
     /// <summary>
     /// 著者の一覧を取得する。
@@ -21,9 +15,9 @@ public class BookModel
     /// <returns>著者の一覧。</returns>
     public static async Task<IEnumerable<Author>> GetAuthorsAsync()
     {
-        var authors = new List<Author>();
+        List<Author> authors = new List<Author>();
 
-        using (var dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new BookDBContext())
         {
             authors = await dbContext.Authors.ToListAsync();
         }
@@ -37,9 +31,9 @@ public class BookModel
     /// <returns>本情報の一覧。</returns>
     public static async Task<IEnumerable<Book>> GetBooksAsync()
     {
-        var books = new List<Book>();
+        List<Book> books = new List<Book>();
 
-        using (var dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new BookDBContext())
         {
             books = await dbContext.Books
                 .GroupJoin(
@@ -72,9 +66,9 @@ public class BookModel
     /// <returns>本情報の一覧。</returns>
     public static async Task<IEnumerable<Book>> GetBooksAsync(string title)
     {
-        var books = new List<Book>();
+        List<Book> books = new List<Book>();
 
-        using (var dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new BookDBContext())
         {
             books = await dbContext.Books
                 .GroupJoin(
@@ -107,7 +101,7 @@ public class BookModel
     /// <param name="author"></param>
     public static void AddAuthor(Author author)
     {
-        using (var dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new BookDBContext())
         {
             dbContext.Authors.Add(author);
 
@@ -121,7 +115,7 @@ public class BookModel
     /// <param name="book">本情報。</param>
     public static void AddBook(Book book)
     {
-        using (var dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new BookDBContext())
         {
             dbContext.Books.Add(book);
 

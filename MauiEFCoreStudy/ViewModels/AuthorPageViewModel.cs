@@ -2,11 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiEFCoreStudy.ViewModels;
 

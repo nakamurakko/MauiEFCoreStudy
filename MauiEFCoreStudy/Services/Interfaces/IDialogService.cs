@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MauiEFCoreStudy.Services.Interfaces;
+﻿namespace MauiEFCoreStudy.Services.Interfaces;
 
 /// <summary>
 /// ダイアログメッセージサービス用インターフェース。

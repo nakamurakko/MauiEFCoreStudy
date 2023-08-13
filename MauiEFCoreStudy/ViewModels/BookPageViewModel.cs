@@ -5,12 +5,7 @@ using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
 using MauiEFCoreStudy.Services.Interfaces;
 using MauiEFCoreStudy.ViewModels.Common;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiEFCoreStudy.ViewModels;
 
@@ -53,9 +48,9 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     public BookPageViewModel(IDialogService dialogService)
     {
         // https://learn.microsoft.com/ja-jp/dotnet/architecture/maui/dependency-injection
-        _dialogService = dialogService;
-        
-        Initialization = InitializeAsync();
+        this._dialogService = dialogService;
+
+        this.Initialization = this.InitializeAsync();
     }
 
     /// <summary>
@@ -64,15 +59,15 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     /// <returns><see cref="Task"/></returns>
     private async Task InitializeAsync()
     {
-        var authors = await BookModel.GetAuthorsAsync();
-        foreach (var author in authors)
+        IEnumerable<Author> authors = await BookModel.GetAuthorsAsync();
+        foreach (Author author in authors)
         {
-            Authors.Add(author);
+            this.Authors.Add(author);
         }
 
-        if (!string.IsNullOrEmpty(Book.Title))
+        if (!string.IsNullOrEmpty(this.Book.Title))
         {
-            await _dialogService.DisplayAlert("", Book.Title, "OK", "Cancel");
+            await this._dialogService.DisplayAlert("", this.Book.Title, "OK", "Cancel");
         }
     }
 
@@ -82,10 +77,10 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     [RelayCommand]
     private void AddBook()
     {
-        BookModel.AddBook(Book);
+        BookModel.AddBook(this.Book);
 
-        Book = new Book();
-        SelectedAuthor = null;
+        this.Book = new Book();
+        this.SelectedAuthor = null;
     }
 
     /// <summary>
@@ -107,7 +102,7 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
             return;
         }
 
-        _selectedAuthor = _authors.Where(x => x.AuthorId == value.AuthorId.Value).FirstOrDefault();
+        this.SelectedAuthor = this.Authors.Where(x => x.AuthorId == value.AuthorId.Value).FirstOrDefault();
     }
 
     /// <summary>
@@ -118,14 +113,14 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     {
         if (value == null)
         {
-            _book.AuthorId = null;
-            _book.Author = null;
+            this.Book.AuthorId = null;
+            this.Book.Author = null;
 
             return;
         }
 
-        _book.AuthorId = value.AuthorId;
-        _book.Author = value;
+        this.Book.AuthorId = value.AuthorId;
+        this.Book.Author = value;
     }
 
     /// <summary>
@@ -137,18 +132,18 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
         switch (value)
         {
             case DisplayMode.Add:
-                _title = "本を追加";
-                IsReadonly = false;
+                this.Title = "本を追加";
+                this.IsReadonly = false;
 
                 break;
             case DisplayMode.Edit:
-                _title = "本を編集";
-                IsReadonly = false;
+                this.Title = "本を編集";
+                this.IsReadonly = false;
 
                 break;
             case DisplayMode.ReadOnly:
-                _title = "本情報";
-                IsReadonly = true;
+                this.Title = "本情報";
+                this.IsReadonly = true;
 
                 break;
         }

@@ -1,11 +1,8 @@
 ﻿using MauiEFCoreStudy.Constants;
-using MauiEFCoreStudy.DB;
 using MauiEFCoreStudy.Services;
 using MauiEFCoreStudy.Services.Interfaces;
 using MauiEFCoreStudy.ViewModels;
 using MauiEFCoreStudy.Views;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace MauiEFCoreStudy;
 
@@ -13,7 +10,7 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        var builder = MauiApp.CreateBuilder();
+        MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
             .RegisterServices()

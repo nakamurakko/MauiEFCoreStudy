@@ -11,8 +11,8 @@ public partial class BookPage : ContentPage
     /// <param name="bookPageViewModel"><see cref="BookPageViewModel"/></param>
     public BookPage(BookPageViewModel bookPageViewModel)
     {
-        BindingContext = bookPageViewModel;
+        this.BindingContext = bookPageViewModel;
 
-        InitializeComponent();
+        this.InitializeComponent();
     }
 }

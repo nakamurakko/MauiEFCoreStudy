@@ -4,6 +4,6 @@ public partial class AuthorPage : ContentPage
 {
     public AuthorPage()
     {
-        InitializeComponent();
+        this.InitializeComponent();
     }
 }

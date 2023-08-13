@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MauiEFCoreStudy.Constants;
+﻿namespace MauiEFCoreStudy.Constants;
 
 /// <summary>
 /// 画面の表示形式。

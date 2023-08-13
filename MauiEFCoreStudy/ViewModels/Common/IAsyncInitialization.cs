@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MauiEFCoreStudy.ViewModels.Common;
+﻿namespace MauiEFCoreStudy.ViewModels.Common;
 
 // https://learn.microsoft.com/ja-jp/archive/msdn-magazine/2014/may/async-programming-patterns-for-asynchronous-mvvm-applications-services
 

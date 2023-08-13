@@ -4,12 +4,7 @@ using MauiEFCoreStudy.Constants;
 using MauiEFCoreStudy.DataTypes;
 using MauiEFCoreStudy.Models;
 using MauiEFCoreStudy.ViewModels.Common;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiEFCoreStudy.ViewModels;
 
@@ -37,7 +32,7 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
     /// </summary>
     public MainPageViewModel()
     {
-        Initialization = InitializeAsync();
+        this.Initialization = this.InitializeAsync();
     }
 
     /// <summary>
@@ -46,10 +41,10 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
     /// <returns><see cref="Task"/></returns>
     private async Task InitializeAsync()
     {
-        var books = await BookModel.GetBooksAsync();
-        foreach (var book in books)
+        IEnumerable<Book> books = await BookModel.GetBooksAsync();
+        foreach (Book book in books)
         {
-            Books.Add(book);
+            this.Books.Add(book);
         }
     }
 
@@ -69,16 +64,16 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
     [RelayCommand]
     private async Task SearchBooksAsync()
     {
-        if (string.IsNullOrWhiteSpace(SearchTitle))
+        if (string.IsNullOrWhiteSpace(this.SearchTitle))
         {
             return;
         }
 
-        Books.Clear();
-        var books = await BookModel.GetBooksAsync(SearchTitle);
-        foreach (var book in books)
+        this.Books.Clear();
+        IEnumerable<Book> books = await BookModel.GetBooksAsync(this.SearchTitle);
+        foreach (Book book in books)
         {
-            Books.Add(book);
+            this.Books.Add(book);
         }
     }
 
@@ -88,13 +83,13 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
     [RelayCommand]
     private async Task ClearSearchResultAsync()
     {
-        SearchTitle = "";
+        this.SearchTitle = "";
 
-        Books.Clear();
-        var books = await BookModel.GetBooksAsync();
-        foreach (var book in books)
+        this.Books.Clear();
+        IEnumerable<Book> books = await BookModel.GetBooksAsync();
+        foreach (Book book in books)
         {
-            Books.Add(book);
+            this.Books.Add(book);
         }
     }
 }
