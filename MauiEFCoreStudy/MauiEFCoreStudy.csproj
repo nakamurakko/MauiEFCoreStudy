@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
@@ -65,9 +65,9 @@
 
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.0" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.1" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
