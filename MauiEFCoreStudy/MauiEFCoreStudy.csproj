@@ -30,7 +30,7 @@
 		<Authors>nakamurakko</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<DefaultLanguage>ja-JP</DefaultLanguage>
-		<PackageCertificateThumbprint>6FF89C41642DC79148033B94099098F30AD3242D</PackageCertificateThumbprint>
+		<PackageCertificateThumbprint>A140CBC5B148E095FA484A1750DB62D1C7BC9642</PackageCertificateThumbprint>
 		<PackageCertificateKeyFile>MauiEFCoreStudy_TemporaryKey.pfx</PackageCertificateKeyFile>
 		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
 	</PropertyGroup>
