@@ -65,11 +65,11 @@
 
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.4" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
-    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
-    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.80" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
   </ItemGroup>
 
 </Project>
