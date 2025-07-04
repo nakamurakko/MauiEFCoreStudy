@@ -14,13 +14,13 @@ public partial class AuthorPageViewModel : ObservableObject
     private string _title = "著者を追加";
 
     [ObservableProperty]
-    private Author _author = new Author();
+    private Author _author = new();
 
     [RelayCommand]
     private void AddAuthor()
     {
-        BookModel.AddAuthor(Author);
+        BookModel.AddAuthor(this.Author);
 
-        Author = new Author();
+        this.Author = new Author();
     }
 }

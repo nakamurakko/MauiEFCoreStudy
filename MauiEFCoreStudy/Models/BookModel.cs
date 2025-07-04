@@ -15,9 +15,9 @@ public sealed class BookModel
     /// <returns>著者の一覧。</returns>
     public static async Task<IEnumerable<Author>> GetAuthorsAsync()
     {
-        List<Author> authors = new List<Author>();
+        List<Author> authors = new();
 
-        using (BookDBContext dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new())
         {
             authors = await dbContext.Authors.ToListAsync();
         }
@@ -31,9 +31,9 @@ public sealed class BookModel
     /// <returns>本情報の一覧。</returns>
     public static async Task<IEnumerable<Book>> GetBooksAsync()
     {
-        List<Book> books = new List<Book>();
+        List<Book> books = new();
 
-        using (BookDBContext dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new())
         {
             books = await dbContext.Books
                 .GroupJoin(
@@ -66,9 +66,9 @@ public sealed class BookModel
     /// <returns>本情報の一覧。</returns>
     public static async Task<IEnumerable<Book>> GetBooksAsync(string title)
     {
-        List<Book> books = new List<Book>();
+        List<Book> books = new();
 
-        using (BookDBContext dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new())
         {
             books = await dbContext.Books
                 .GroupJoin(
@@ -101,7 +101,7 @@ public sealed class BookModel
     /// <param name="author"></param>
     public static void AddAuthor(Author author)
     {
-        using (BookDBContext dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new())
         {
             dbContext.Authors.Add(author);
 
@@ -115,7 +115,7 @@ public sealed class BookModel
     /// <param name="book">本情報。</param>
     public static void AddBook(Book book)
     {
-        using (BookDBContext dbContext = new BookDBContext())
+        using (BookDBContext dbContext = new())
         {
             dbContext.Books.Add(book);
 

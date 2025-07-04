@@ -17,7 +17,7 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
     private string _title = "MauiEFCoreStudy";
 
     [ObservableProperty]
-    private ObservableCollection<Book> _books = new ObservableCollection<Book>();
+    private ObservableCollection<Book> _books = new();
 
     /// <summary>
     /// 検索対象の本のタイトル。

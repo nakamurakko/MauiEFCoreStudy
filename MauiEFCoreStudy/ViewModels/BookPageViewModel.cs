@@ -25,7 +25,7 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     private string _title = "本情報";
 
     [ObservableProperty]
-    private Book _book = new Book();
+    private Book _book = new();
 
     [ObservableProperty]
     private DisplayMode _displayMode = DisplayMode.Add;
@@ -34,7 +34,7 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     private bool _isReadonly = false;
 
     [ObservableProperty]
-    private ObservableCollection<Author> _authors = new ObservableCollection<Author>();
+    private ObservableCollection<Author> _authors = new();
 
     [ObservableProperty]
     private Author _selectedAuthor;
