@@ -35,21 +35,38 @@ public sealed class BookModel
 
         using (BookDBContext dbContext = new())
         {
+            //books = await dbContext.Books
+            //    .GroupJoin(
+            //        dbContext.Authors,
+            //        book => book.AuthorId,
+            //        author => author.AuthorId,
+            //        (book, author) => new { book, author }
+            //    )
+            //    .SelectMany(
+            //        bookAndAuthor => bookAndAuthor.author.DefaultIfEmpty(),
+            //        (bookAndAuthor, author) =>
+            //        new Book()
+            //        {
+            //            BookId = bookAndAuthor.book.BookId,
+            //            Title = bookAndAuthor.book.Title,
+            //            AuthorId = bookAndAuthor.book.AuthorId,
+            //            Author = author
+            //        }
+            //    )
+            //    .ToListAsync();
+
+            // .NET 10 以降では LeftJoin を使う。(LinqKit に LeftJoin が存在するため注意する。)
             books = await dbContext.Books
-                .GroupJoin(
+                .LeftJoin(
                     dbContext.Authors,
                     book => book.AuthorId,
                     author => author.AuthorId,
-                    (book, author) => new { book, author }
-                )
-                .SelectMany(
-                    bookAndAuthor => bookAndAuthor.author.DefaultIfEmpty(),
-                    (bookAndAuthor, author) =>
+                    (book, author) =>
                     new Book()
                     {
-                        BookId = bookAndAuthor.book.BookId,
-                        Title = bookAndAuthor.book.Title,
-                        AuthorId = bookAndAuthor.book.AuthorId,
+                        BookId = book.BookId,
+                        Title = book.Title,
+                        AuthorId = book.AuthorId,
                         Author = author
                     }
                 )
@@ -70,21 +87,39 @@ public sealed class BookModel
 
         using (BookDBContext dbContext = new())
         {
+            //books = await dbContext.Books
+            //    .GroupJoin(
+            //        dbContext.Authors,
+            //        book => book.AuthorId,
+            //        author => author.AuthorId,
+            //        (book, author) => new { book, author }
+            //    )
+            //    .SelectMany(
+            //        bookAndAuthor => bookAndAuthor.author.DefaultIfEmpty(),
+            //        (bookAndAuthor, author) =>
+            //        new Book()
+            //        {
+            //            BookId = bookAndAuthor.book.BookId,
+            //            Title = bookAndAuthor.book.Title,
+            //            AuthorId = bookAndAuthor.book.AuthorId,
+            //            Author = author
+            //        }
+            //    )
+            //    .Where(book => book.Title.Contains(title))
+            //    .ToListAsync();
+
+            // .NET 10 以降では LeftJoin を使う。(LinqKit に LeftJoin が存在するため注意する。)
             books = await dbContext.Books
-                .GroupJoin(
+                .LeftJoin(
                     dbContext.Authors,
                     book => book.AuthorId,
                     author => author.AuthorId,
-                    (book, author) => new { book, author }
-                )
-                .SelectMany(
-                    bookAndAuthor => bookAndAuthor.author.DefaultIfEmpty(),
-                    (bookAndAuthor, author) =>
+                    (book, author) =>
                     new Book()
                     {
-                        BookId = bookAndAuthor.book.BookId,
-                        Title = bookAndAuthor.book.Title,
-                        AuthorId = bookAndAuthor.book.AuthorId,
+                        BookId = book.BookId,
+                        Title = book.Title,
+                        AuthorId = book.AuthorId,
                         Author = author
                     }
                 )
