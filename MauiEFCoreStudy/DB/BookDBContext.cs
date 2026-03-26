@@ -6,11 +6,12 @@ namespace MauiEFCoreStudy.DB;
 
 public sealed class BookDBContext : DbContext
 {
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // https://docs.microsoft.com/ja-jp/ef/core/dbcontext-configuration/
         // https://learn.microsoft.com/ja-jp/ef/core/what-is-new/ef-core-7.0/breaking-changes#encrypt-defaults-to-true-for-sql-server-connections
-        optionsBuilder.UseSqlite("database.sqlite");
+        optionsBuilder.UseSqlite("Data Source=database.sqlite");
 
         // ログをコンソールに出力する。
         // https://learn.microsoft.com/ja-jp/ef/core/logging-events-diagnostics/simple-logging#logging-to-the-console
@@ -20,4 +21,5 @@ public sealed class BookDBContext : DbContext
     public DbSet<Author> Authors { get; set; }
 
     public DbSet<Book> Books { get; set; }
+
 }

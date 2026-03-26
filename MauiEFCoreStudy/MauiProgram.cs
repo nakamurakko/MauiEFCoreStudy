@@ -1,4 +1,5 @@
 ﻿using MauiEFCoreStudy.Constants;
+using MauiEFCoreStudy.DB;
 using MauiEFCoreStudy.Services;
 using MauiEFCoreStudy.Services.Interfaces;
 using MauiEFCoreStudy.ViewModels;
@@ -8,6 +9,7 @@ namespace MauiEFCoreStudy;
 
 public static class MauiProgram
 {
+
     public static MauiApp CreateMauiApp()
     {
         MauiAppBuilder builder = MauiApp.CreateBuilder();
@@ -21,6 +23,10 @@ public static class MauiProgram
         Routing.RegisterRoute(RoutingPath.Main, typeof(MainPage));
         Routing.RegisterRoute(RoutingPath.Author, typeof(AuthorPage));
         Routing.RegisterRoute(RoutingPath.Book, typeof(BookPage));
+
+        // データベースファイルを作成。
+        BookDBContext dbContext = new();
+        dbContext.Database.EnsureCreated();
 
         return builder.Build();
     }
@@ -69,4 +75,5 @@ public static class MauiProgram
 
         return builder;
     }
+
 }
