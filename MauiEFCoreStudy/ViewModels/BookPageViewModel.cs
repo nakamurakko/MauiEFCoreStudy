@@ -65,11 +65,6 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
         {
             this.Authors.Add(author);
         }
-
-        if (!string.IsNullOrEmpty(this.Book.Title))
-        {
-            await this._dialogService.DisplayAlertAsync("", this.Book.Title, "OK", "Cancel");
-        }
     }
 
     /// <summary>
@@ -98,12 +93,15 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
             return;
         }
 
-        if (!value.AuthorId.HasValue)
+        if (value.AuthorId.HasValue)
         {
-            return;
+            this.SelectedAuthor = this.Authors.Where(x => x.AuthorId == value.AuthorId.Value).FirstOrDefault();
         }
 
-        this.SelectedAuthor = this.Authors.Where(x => x.AuthorId == value.AuthorId.Value).FirstOrDefault();
+        if (!string.IsNullOrEmpty(this.Book.Title))
+        {
+            this._dialogService.DisplayAlertAsync("", this.Book.Title, "OK", "Cancel");
+        }
     }
 
     /// <summary>
