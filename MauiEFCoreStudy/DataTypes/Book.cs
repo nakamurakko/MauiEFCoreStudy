@@ -7,8 +7,9 @@ namespace MauiEFCoreStudy.DataTypes;
 /// 本クラス。
 /// </summary>
 [Table(nameof(Book))]
-public class Book
+public sealed class Book
 {
+
     /// <summary>
     /// 本ID。
     /// </summary>
@@ -35,4 +36,5 @@ public class Book
     [ForeignKey(nameof(AuthorId))]
     [NotMapped]
     public Author Author { get; set; }
+
 }

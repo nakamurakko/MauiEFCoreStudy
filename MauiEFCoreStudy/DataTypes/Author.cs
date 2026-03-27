@@ -7,8 +7,9 @@ namespace MauiEFCoreStudy.DataTypes;
 /// 著者クラス。
 /// </summary>
 [Table(nameof(Author))]
-public class Author
+public sealed class Author
 {
+
     /// <summary>
     /// 著者ID。
     /// </summary>
@@ -20,4 +21,5 @@ public class Author
     [Required]
     [MaxLength(100)]
     public string AuthorName { get; set; }
+
 }

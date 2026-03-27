@@ -7,8 +7,10 @@ namespace MauiEFCoreStudy.Services;
 /// </summary>
 public class DialogService : IDialogService
 {
-    public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
+
+    public Task<bool> DisplayAlertAsync(string title, string message, string accept, string cancel)
     {
-        return Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
+        return Application.Current.Windows[0].Page.DisplayAlertAsync(title, message, accept, cancel);
     }
+
 }

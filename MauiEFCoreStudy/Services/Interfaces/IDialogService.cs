@@ -13,5 +13,5 @@ public interface IDialogService
     /// <param name="accept"></param>
     /// <param name="cancel"></param>
     /// <returns></returns>
-    Task<bool> DisplayAlert(string title, string message, string accept, string cancel);
+    Task<bool> DisplayAlertAsync(string title, string message, string accept, string cancel);
 }

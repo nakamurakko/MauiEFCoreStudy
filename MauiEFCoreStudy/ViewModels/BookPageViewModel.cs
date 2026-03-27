@@ -16,6 +16,7 @@ namespace MauiEFCoreStudy.ViewModels;
 [QueryProperty(nameof(DisplayMode), nameof(DisplayMode))]
 public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
 {
+
     /// <summary>
     /// <see cref="IDialogService"/>
     /// </summary>
@@ -67,7 +68,7 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
 
         if (!string.IsNullOrEmpty(this.Book.Title))
         {
-            await this._dialogService.DisplayAlert("", this.Book.Title, "OK", "Cancel");
+            await this._dialogService.DisplayAlertAsync("", this.Book.Title, "OK", "Cancel");
         }
     }
 
@@ -148,4 +149,5 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
                 break;
         }
     }
+
 }

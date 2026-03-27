@@ -13,6 +13,7 @@ namespace MauiEFCoreStudy.ViewModels;
 /// </summary>
 public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
 {
+
     [ObservableProperty]
     private string _title = "MauiEFCoreStudy";
 
@@ -92,4 +93,5 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
             this.Books.Add(book);
         }
     }
+
 }
