@@ -75,9 +75,9 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     /// 本を追加する。
     /// </summary>
     [RelayCommand]
-    private void AddBook()
+    private async Task AddBook()
     {
-        BookModel.AddBook(this.Book);
+        await BookModel.AddBookAsync(this.Book);
 
         this.Book = new Book();
         this.SelectedAuthor = null;

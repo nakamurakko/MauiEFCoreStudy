@@ -10,6 +10,7 @@ namespace MauiEFCoreStudy.ViewModels;
 /// </summary>
 public partial class AuthorPageViewModel : ObservableObject
 {
+
     [ObservableProperty]
     private string _title = "著者を追加";
 
@@ -17,10 +18,11 @@ public partial class AuthorPageViewModel : ObservableObject
     private Author _author = new();
 
     [RelayCommand]
-    private void AddAuthor()
+    private async Task AddAuthor()
     {
-        BookModel.AddAuthor(this.Author);
+        await BookModel.AddAuthorAsync(this.Author);
 
         this.Author = new Author();
     }
+
 }
