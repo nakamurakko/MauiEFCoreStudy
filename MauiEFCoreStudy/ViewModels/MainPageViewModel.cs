@@ -43,10 +43,7 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
     private async Task InitializeAsync()
     {
         IEnumerable<Book> books = await BookModel.GetBooksAsync();
-        foreach (Book book in books)
-        {
-            this.Books.Add(book);
-        }
+        this.Books = new ObservableCollection<Book>(books);
     }
 
     /// <summary>
@@ -65,12 +62,8 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
     [RelayCommand]
     private async Task SearchBooksAsync()
     {
-        this.Books.Clear();
         IEnumerable<Book> books = await BookModel.GetBooksAsync(this.SearchTitle);
-        foreach (Book book in books)
-        {
-            this.Books.Add(book);
-        }
+        this.Books = new ObservableCollection<Book>(books);
     }
 
     /// <summary>
@@ -81,12 +74,8 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
     {
         this.SearchTitle = "";
 
-        this.Books.Clear();
         IEnumerable<Book> books = await BookModel.GetBooksAsync();
-        foreach (Book book in books)
-        {
-            this.Books.Add(book);
-        }
+        this.Books = new ObservableCollection<Book>(books);
     }
 
 }
