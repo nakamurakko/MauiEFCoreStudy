@@ -18,9 +18,7 @@ public sealed class BookModel
     {
         using BookDbContext dbContext = new();
 
-        List<Author> authors = new();
-        authors = await dbContext.Authors.ToListAsync();
-        return authors;
+        return await dbContext.Authors.ToListAsync();
     }
 
     /// <summary>
@@ -32,9 +30,13 @@ public sealed class BookModel
     {
         using BookDbContext dbContext = new();
 
-        List<Book> books = new();
+        LinqKit.ExpressionStarter<Book> predicateBuilder = LinqKit.PredicateBuilder.New<Book>(true);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            predicateBuilder.Or(x => x.Title.Contains(title));
+        }
 
-        //books = await dbContext.Books
+        //return await dbContext.Books
         //    .GroupJoin(
         //        dbContext.Authors,
         //        book => book.AuthorId,
@@ -55,32 +57,29 @@ public sealed class BookModel
         //    .Where(book => book.Title.Contains(title))
         //    .ToListAsync();
 
-        // .NET 10 以降では LeftJoin を使う。(LinqKit に LeftJoin が存在するため注意する。)
-        LinqKit.ExpressionStarter<Book> predicateBuilder = LinqKit.PredicateBuilder.New<Book>(true);
-        if (!string.IsNullOrWhiteSpace(title))
-        {
-            predicateBuilder.Or(x => x.Title.Contains(title));
-        }
+        //// .NET 10 以降では LeftJoin を使う。(LinqKit に LeftJoin が存在するため注意する。)
+        //return await dbContext.Books
+        //    .LeftJoin(
+        //        dbContext.Authors,
+        //        book => book.AuthorId,
+        //        author => author.AuthorId,
+        //        (book, author) =>
+        //        new Book()
+        //        {
+        //            BookId = book.BookId,
+        //            Title = book.Title,
+        //            AuthorId = book.AuthorId,
+        //            Author = author
+        //        }
+        //    )
+        //    .Where(predicateBuilder)
+        //    .ToListAsync();
 
-        books = await dbContext.Books
-            .LeftJoin(
-                dbContext.Authors,
-                book => book.AuthorId,
-                author => author.AuthorId,
-                (book, author) =>
-                new Book()
-                {
-                    BookId = book.BookId,
-                    Title = book.Title,
-                    AuthorId = book.AuthorId,
-                    Author = author
-                }
-            )
+        // QueryableExtensions.Include を使う。
+        return await dbContext.Books
+            .Include(book => book.Author)
             .Where(predicateBuilder)
             .ToListAsync();
-
-
-        return books;
     }
 
     /// <summary>
@@ -120,7 +119,8 @@ public sealed class BookModel
         {
             try
             {
-                await dbContext.Books.AddAsync(book);
+                //await dbContext.Books.AddAsync(book);
+                await dbContext.Books.AddAsync(new Book { Title = book.Title, AuthorId = book.AuthorId });
                 await dbContext.SaveChangesAsync();
                 await dbContext.Database.CommitTransactionAsync();
 
