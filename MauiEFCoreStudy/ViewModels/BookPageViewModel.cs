@@ -23,22 +23,22 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     private IDialogService _dialogService;
 
     [ObservableProperty]
-    private string _title = "本情報";
+    public partial string Title { get; set; } = "本情報";
 
     [ObservableProperty]
-    private Book _book = new();
+    public partial Book Book { get; set; } = new();
 
     [ObservableProperty]
-    private DisplayMode _displayMode = DisplayMode.Add;
+    public partial DisplayMode DisplayMode { get; set; } = DisplayMode.Add;
 
     [ObservableProperty]
-    private bool _isReadonly = false;
+    public partial bool IsReadonly { get; set; } = false;
 
     [ObservableProperty]
-    private ObservableCollection<Author> _authors = new();
+    public partial ObservableCollection<Author> Authors { get; set; } = new();
 
     [ObservableProperty]
-    private Author _selectedAuthor;
+    public partial Author SelectedAuthor { get; set; }
 
     public Task Initialization { get; private set; }
 

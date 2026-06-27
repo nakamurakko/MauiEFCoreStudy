@@ -12,10 +12,10 @@ public partial class AuthorPageViewModel : ObservableObject
 {
 
     [ObservableProperty]
-    private string _title = "著者を追加";
+    public partial string Title { get; set; } = "著者を追加";
 
     [ObservableProperty]
-    private Author _author = new();
+    public partial Author Author { get; set; } = new();
 
     [RelayCommand]
     private async Task AddAuthor()

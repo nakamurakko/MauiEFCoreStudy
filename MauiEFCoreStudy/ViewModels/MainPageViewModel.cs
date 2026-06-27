@@ -15,16 +15,16 @@ public partial class MainPageViewModel : ObservableObject, IAsyncInitialization
 {
 
     [ObservableProperty]
-    private string _title = "MauiEFCoreStudy";
+    public partial string Title { get; set; } = "MauiEFCoreStudy";
 
     [ObservableProperty]
-    private ObservableCollection<Book> _books = new();
+    public partial ObservableCollection<Book> Books { get; set; } = new();
 
     /// <summary>
     /// 検索対象の本のタイトル。
     /// </summary>
     [ObservableProperty]
-    private string _searchTitle = "";
+    public partial string SearchTitle { get; set; } = "";
 
     public Task Initialization { get; private set; }
 
