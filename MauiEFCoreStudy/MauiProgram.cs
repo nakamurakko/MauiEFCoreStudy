@@ -4,6 +4,8 @@ using MauiEFCoreStudy.Services;
 using MauiEFCoreStudy.Services.Interfaces;
 using MauiEFCoreStudy.ViewModels;
 using MauiEFCoreStudy.Views;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Windows.ApplicationModel.WindowsAppRuntime;
 
 namespace MauiEFCoreStudy;
 
@@ -12,6 +14,9 @@ public static class MauiProgram
 
     public static MauiApp CreateMauiApp()
     {
+        // dotnet ef のために DeploymentManager の自動初期化を無効(WindowsAppSdkDeploymentManagerInitialize = false)にしているため、 DeploymentManager.Initialize() を呼び出す。
+        DeploymentManager.Initialize();
+
         MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
@@ -24,9 +29,7 @@ public static class MauiProgram
         Routing.RegisterRoute(RoutingPath.Author, typeof(AuthorPage));
         Routing.RegisterRoute(RoutingPath.Book, typeof(BookPage));
 
-        // データベースファイルを作成。
-        BookDBContext dbContext = new();
-        dbContext.Database.EnsureCreated();
+        CreateDatabase();
 
         return builder.Build();
     }
@@ -74,6 +77,17 @@ public static class MauiProgram
         builder.Services.AddTransient<BookPage>();
 
         return builder;
+    }
+
+    /// <summary>
+    /// データベースを作成する。
+    /// </summary>
+    private static void CreateDatabase()
+    {
+        using BookDbContext dbContext = new();
+        // DB のマイグレーション
+        // https://learn.microsoft.com/ja-jp/dotnet/api/microsoft.entityframeworkcore.migrations.imigrator.migrate
+        dbContext.Database.Migrate();
     }
 
 }

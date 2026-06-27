@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MauiEFCoreStudy.DataTypes;
+using MauiEFCoreStudy.DB.Entities;
 using MauiEFCoreStudy.Models;
 
 namespace MauiEFCoreStudy.ViewModels;

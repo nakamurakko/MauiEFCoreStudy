@@ -1,5 +1,5 @@
-﻿using MauiEFCoreStudy.DataTypes;
-using MauiEFCoreStudy.DB;
+﻿using MauiEFCoreStudy.DB;
+using MauiEFCoreStudy.DB.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MauiEFCoreStudy.Models;
@@ -16,7 +16,7 @@ public sealed class BookModel
     /// <returns>著者の一覧。</returns>
     public static async Task<IEnumerable<Author>> GetAuthorsAsync()
     {
-        using BookDBContext dbContext = new();
+        using BookDbContext dbContext = new();
 
         List<Author> authors = new();
         authors = await dbContext.Authors.ToListAsync();
@@ -30,7 +30,7 @@ public sealed class BookModel
     /// <returns>本情報の一覧。</returns>
     public static async Task<IEnumerable<Book>> GetBooksAsync(string title = "")
     {
-        using BookDBContext dbContext = new();
+        using BookDbContext dbContext = new();
 
         List<Book> books = new();
 
@@ -89,7 +89,7 @@ public sealed class BookModel
     /// <param name="author"></param>
     public static async Task AddAuthorAsync(Author author)
     {
-        using BookDBContext dbContext = new();
+        using BookDbContext dbContext = new();
 
         using (await dbContext.Database.BeginTransactionAsync())
         {
@@ -114,7 +114,7 @@ public sealed class BookModel
     /// <param name="book">本情報。</param>
     public static async Task AddBookAsync(Book book)
     {
-        using BookDBContext dbContext = new();
+        using BookDbContext dbContext = new();
 
         using (await dbContext.Database.BeginTransactionAsync())
         {

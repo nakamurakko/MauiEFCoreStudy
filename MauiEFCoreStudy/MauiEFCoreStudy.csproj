@@ -20,6 +20,9 @@
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
+    <!-- dotnet ef が失敗するため、 DeploymentManager の自動初期化 を無効にする。 https://learn.microsoft.com/ja-jp/windows/apps/package-and-deploy/project-properties#the-deployment-manager-auto-initializer -->
+    <WindowsAppSdkDeploymentManagerInitialize>false</WindowsAppSdkDeploymentManagerInitialize>
+
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">31.0</SupportedOSPlatformVersion>
@@ -67,8 +70,16 @@
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 	  <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="10.0.11" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.9" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.9">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.9" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.9" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.9">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
     <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.80" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="10.0.80" />
   </ItemGroup>
