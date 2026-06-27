@@ -1,4 +1,5 @@
-﻿using MauiEFCoreStudy.Constants;
+﻿using CommunityToolkit.Maui;
+using MauiEFCoreStudy.Constants;
 using MauiEFCoreStudy.DB;
 using MauiEFCoreStudy.Services;
 using MauiEFCoreStudy.Services.Interfaces;
@@ -20,6 +21,7 @@ public static class MauiProgram
         MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .RegisterServices()
             .RegisterViewModels()
             .RegisterViews();
