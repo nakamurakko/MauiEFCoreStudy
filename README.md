@@ -4,8 +4,11 @@
 
 ## 追加 NuGet パッケージ
 
+* [CommunityToolkit.Maui](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/maui/)
 * [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)
+* [LinqKit.Microsoft.EntityFrameworkCore](https://github.com/scottksmith95/LINQKit)
 * [Microsoft.EntityFrameworkCore](https://learn.microsoft.com/ja-jp/ef/core/)
+* [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design/)
 * [Microsoft.EntityFrameworkCore.Relational](https://learn.microsoft.com/ja-jp/ef/core/what-is-new/nuget-packages)
 * [Microsoft.EntityFrameworkCore.SQLite](https://learn.microsoft.com/ja-jp/ef/core/providers/?tabs=dotnet-core-cli)
 * [Microsoft.EntityFrameworkCore.Tools](https://learn.microsoft.com/ja-jp/ef/core/cli/powershell)
