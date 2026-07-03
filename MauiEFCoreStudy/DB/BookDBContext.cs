@@ -28,6 +28,15 @@ public sealed class BookDbContext : DbContext
         optionsBuilder.LogTo(message => Debug.WriteLine(message));
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Author>()
+            .HasMany(author => author.Books)
+            .WithOne(book => book.Author)
+            .HasPrincipalKey(author => author.AuthorId)
+            .HasForeignKey(book => book.AuthorId);
+    }
+
     /// <summary>
     /// 日時更新のイベント。
     /// </summary>
