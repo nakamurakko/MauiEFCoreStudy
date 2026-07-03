@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MauiEFCoreStudy.Migrations
 {
-    [DbContext(typeof(BookDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20260703225922_AddDbTimestamps")]
     partial class AddDbTimestamps
     {

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MauiEFCoreStudy.Migrations
 {
-    [DbContext(typeof(BookDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20260627005507_InitialCreate")]
     partial class InitialCreate
     {

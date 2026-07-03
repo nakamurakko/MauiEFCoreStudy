@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MauiEFCoreStudy.Migrations
 {
-    [DbContext(typeof(BookDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class BookDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

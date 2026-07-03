@@ -5,13 +5,13 @@ using System.Diagnostics;
 
 namespace MauiEFCoreStudy.DB;
 
-public sealed class BookDbContext : DbContext
+public sealed class ApplicationDbContext : DbContext
 {
 
     /// <summary>
     /// コンストラクター。
     /// </summary>
-    public BookDbContext()
+    public ApplicationDbContext()
     {
         this.ChangeTracker.StateChanged += this.TimestampsChanged;
         this.ChangeTracker.Tracked += this.TimestampsChanged;

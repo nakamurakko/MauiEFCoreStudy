@@ -86,7 +86,7 @@ public static class MauiProgram
     /// </summary>
     private static void CreateDatabase()
     {
-        using BookDbContext dbContext = new();
+        using ApplicationDbContext dbContext = new();
         // DB のマイグレーション
         // https://learn.microsoft.com/ja-jp/dotnet/api/microsoft.entityframeworkcore.migrations.imigrator.migrate
         dbContext.Database.Migrate();
