@@ -19,7 +19,9 @@ public sealed class BookModel
     {
         await using ApplicationDbContext dbContext = new();
 
-        return await dbContext.Authors.ToListAsync();
+        return await dbContext.Authors
+            .AsNoTracking()
+            .ToListAsync();
     }
 
     /// <summary>
@@ -80,13 +82,14 @@ public sealed class BookModel
         return await dbContext.Books
             .Include(book => book.Author)
             .Where(predicateBuilder)
+            .AsNoTracking()
             .ToListAsync();
     }
 
     /// <summary>
     /// 著者を追加する。
     /// </summary>
-    /// <param name="author"></param>
+    /// <param name="author">著者。</param>
     public static async Task AddAuthorAsync(Author author)
     {
         await using ApplicationDbContext dbContext = new();
@@ -94,7 +97,12 @@ public sealed class BookModel
         await using IDbContextTransaction transaction = await dbContext.Database.BeginTransactionAsync();
         try
         {
-            await dbContext.Authors.AddAsync(author);
+            await dbContext.Authors.AddAsync(
+                new Author()
+                {
+                    AuthorName = author.AuthorName,
+                }
+            );
             await dbContext.SaveChangesAsync();
             await transaction.CommitAsync();
         }
@@ -121,7 +129,7 @@ public sealed class BookModel
                 new Book
                 {
                     Title = book.Title,
-                    AuthorId = book.AuthorId,
+                    AuthorId = book?.Author?.AuthorId,
                 }
             );
             await dbContext.SaveChangesAsync();
