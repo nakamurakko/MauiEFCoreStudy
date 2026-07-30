@@ -1,6 +1,7 @@
 ﻿using MauiEFCoreStudy.DB;
 using MauiEFCoreStudy.DB.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace MauiEFCoreStudy.Models;
 
@@ -90,20 +91,18 @@ public sealed class BookModel
     {
         await using ApplicationDbContext dbContext = new();
 
-        await using (await dbContext.Database.BeginTransactionAsync())
+        await using IDbContextTransaction transaction = await dbContext.Database.BeginTransactionAsync();
+        try
         {
-            try
-            {
-                await dbContext.Authors.AddAsync(author);
-                await dbContext.SaveChangesAsync();
-                await dbContext.Database.CommitTransactionAsync();
-            }
-            catch (Exception)
-            {
-                await dbContext.Database.RollbackTransactionAsync();
+            await dbContext.Authors.AddAsync(author);
+            await dbContext.SaveChangesAsync();
+            await transaction.CommitAsync();
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync();
 
-                throw;
-            }
+            throw;
         }
     }
 
@@ -115,22 +114,25 @@ public sealed class BookModel
     {
         await using ApplicationDbContext dbContext = new();
 
-        await using (await dbContext.Database.BeginTransactionAsync())
+        await using IDbContextTransaction transaction = await dbContext.Database.BeginTransactionAsync();
+        try
         {
-            try
-            {
-                //await dbContext.Books.AddAsync(book);
-                await dbContext.Books.AddAsync(new Book { Title = book.Title, AuthorId = book.AuthorId });
-                await dbContext.SaveChangesAsync();
-                await dbContext.Database.CommitTransactionAsync();
+            await dbContext.Books.AddAsync(
+                new Book
+                {
+                    Title = book.Title,
+                    AuthorId = book.AuthorId,
+                }
+            );
+            await dbContext.SaveChangesAsync();
+            await transaction.CommitAsync();
 
-            }
-            catch (Exception)
-            {
-                await dbContext.Database.RollbackTransactionAsync();
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync();
 
-                throw;
-            }
+            throw;
         }
     }
 
