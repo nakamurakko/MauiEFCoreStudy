@@ -8,7 +8,7 @@ public partial class App : Application
         this.InitializeComponent();
     }
 
-    protected override Window CreateWindow(IActivationState activationState)
+    protected override Window CreateWindow(IActivationState? activationState)
     {
         return new Window(new AppShell());
     }
