@@ -38,7 +38,7 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     public partial ObservableCollection<Author> Authors { get; set; } = new();
 
     [ObservableProperty]
-    public partial Author SelectedAuthor { get; set; }
+    public partial Author? SelectedAuthor { get; set; }
 
     public Task Initialization { get; private set; }
 
@@ -108,7 +108,7 @@ public partial class BookPageViewModel : ObservableObject, IAsyncInitialization
     /// SelectedAuthor 変更時処理。
     /// </summary>
     /// <param name="value">著者情報。</param>
-    partial void OnSelectedAuthorChanged(Author value)
+    partial void OnSelectedAuthorChanged(Author? value)
     {
         if (value == null)
         {
