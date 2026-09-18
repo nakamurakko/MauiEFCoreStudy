@@ -18,7 +18,7 @@ public sealed class Book : IHasDbTimestamps
     [Required]
     [MaxLength(100)]
     [Comment("書籍名")]
-    public string Title { get; set; }
+    public string Title { get; set; } = "";
 
     /// <summary>著者 ID</summary>
     [Comment("著者 ID")]

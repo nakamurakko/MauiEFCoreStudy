@@ -18,7 +18,7 @@ public sealed class Author : IHasDbTimestamps
     [Required]
     [MaxLength(100)]
     [Comment("著者名")]
-    public string AuthorName { get; set; }
+    public string AuthorName { get; set; } = "";
 
     [Comment("作成日時")]
     public DateTime? CreatedAt { get; set; }
